@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Tycoon</title>
+    <link rel = "stylesheet" type = "text/css" href = "potato.css">
+</head>
+<body>
+    <div class="window">   <!--Left-->
+        <h2 id="potatoLabel">Potatoes: 0</h2>
+        <img id="potatoImage"
+        onclick="potatoClick()"
+        src="potato.png">
+    </div class="window">
+
+    <div class = "window">   <!--Middle-->
+        <h2>Buy</h2>
+        <div id = "stats">
+            <p>Potatoes/sec: 0<br>
+            Potatoes/click: 1</p>
+        </div>
+
+        <div class="upgrade">
+            <p id = "babyFarmerLabel">Baby Farmer: 0 <br>0.2 potato/sec</p>
+            <button id = "babyFarmerButton"onclick = buy(1)>Buy Baby Farmer: $10</button>
+        </div>
+
+        <div class="upgrade">
+            <p id = "farmerLabel">Farmers: 0 <br> 1 potato/sec</p>
+            <button id = "farmerButton" onclick = buy(2)>Buy Farmer: $80</button>
+        </div>
+    
+        <div class="upgrade">
+            <p id = "tractorLabel">Tractors: 0<br>10 potato/sec</p>
+            <button id = "tractorButton" onclick = buy(3)>Buy Tractor: $900</button>
+        </div>
+
+        <div class="upgrade">
+            <p id = "potatoMachineLabel">Potato Machine: 0<br>70 potato/sec</p>
+            <button id = "potatoMachineButton" onclick = buy(4)>Buy Potato Machine: $10000</button>
+        </div>
+
+        <div class="upgrade">
+            <p id = "extraClickerLabel">Extra Clicker: 0 <br>1 potato/click</p>
+            <button id = "extraClickerButton"onclick = buy(5)>Buy Extra Clicker: $1000</button>
+        </div>
+    </div>
+
+    <div class = "window">   <!--Right-->
+        <!--Right-->
+        <h2>Sell</h2>   
+        <p>Sell for 75% you bought for</p>
+        <input type = "radio" name = "item" value="babyFarmer">Sell Farmer</input><br>
+        <input type = "radio" name = "item" value="farmer">Sell Farmer</input><br>
+        <input type = "radio" name = "item" value="tractor">Sell Tractor</input><br>      
+        <input type = "radio" name = "item" value="potatoMachine">Sell Potato Machine</input><br>    
+        <input type = "radio" name = "item" value="extraClicker">Sell Extra Clicker</input><br><br>
+        <p>Enter number to sell: </p>
+        <input type = "number" id = "sellNum"></input><br><br>
+        <button onclick = sell()>Sell</button>    
+    </div>    
+    </body>
+    <script src="potato.js"></script>
+</html>
