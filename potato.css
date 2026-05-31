@@ -1,18 +1,7 @@
 body {
     margin: 0;
+    background: linear-gradient(110deg, yellow, rgb(231, 198, 91));
 }
-
-body {
-    margin: 0;
-    display: flex;
-}
-
-.window {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-}
-
 
 .window {
     float: left;
@@ -21,8 +10,8 @@ body {
 }
 
 #potatoImage {
-    width: 67%;
-    margin-top: 20px;
+    width: 85%;
+    margin-top: 25px;
 }
 
 #stats {
