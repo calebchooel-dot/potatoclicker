@@ -102,7 +102,7 @@ setInterval(function() {
 
 function update() {
     let total = baby_farmer * 0.2 + farmer * 1 + tractor * 10 + potato_machine * 70;
-    document.getElementById("stats").innerHTML = 
+    document.getElementById("statsText").innerHTML = 
     `Potatoes/sec: ${total}<br>Potato/click: ${extra_clicker + 1}`;
 
     document.getElementById("potatoLabel").innerHTML = 
