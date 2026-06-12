@@ -4,6 +4,8 @@ let farmer = {count: 0, base: 100, mult: 1.27, generation: 5};
 let tractor = {count: 0, base: 600, mult: 1.29, generation: 20};
 let potato_machine = {count: 0, base: 3000, mult: 1.31, generation: 100};
 let extra_clicker = {count: 0, base: 200, mult: 1.4, generation: 1};
+update();
+check();
 
 function potatoClick() {
     potato += extra_clicker.count + 1;
