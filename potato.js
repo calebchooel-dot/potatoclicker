@@ -41,7 +41,7 @@ function sell() {
 
             if (selected == "babyFarmer" && baby_farmer.count >= count) {
                 let amount = 0;
-                for (let i = baby_farmer.count; i > baby_farmer.count - count; i --) {
+                for (let i = baby_farmer.count - 1; i > baby_farmer.count - count; i --) {
                     amount += Math.round(0.75 * baby_farmer.base * baby_farmer.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
@@ -50,7 +50,7 @@ function sell() {
                 }
             } else if (selected == "farmer" && farmer.count >= count) {
                 let amount = 0;
-                for (let i = farmer.count; i > farmer.count - count; i --) {
+                for (let i = farmer.count - 1; i > farmer.count - count; i --) {
                     amount += Math.round(0.75 * farmer.base * farmer.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
@@ -59,7 +59,7 @@ function sell() {
                 }
             } else if (selected == "tractor" && tractor.count >= count) {
                 let amount = 0;
-                for (let i = tractor.count; i > tractor.count - count; i --) {
+                for (let i = tractor.count - 1; i > tractor.count - count; i --) {
                     amount += Math.round(0.75 * tractor.base * tractor.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
@@ -68,7 +68,7 @@ function sell() {
                 }
             } else if (selected == "potatoMachine" && potato_machine.count >= count) {
                     let amount = 0;
-                    for (let i = potato_machine.count; i > potato_machine.count - count; i --) {
+                    for (let i = potato_machine.count - 1; i > potato_machine.count - count; i --) {
                         amount += Math.round(0.75 * potato_machine.base * potato_machine.mult ** i);
                     }
                     if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
@@ -77,7 +77,7 @@ function sell() {
                     }
             } else if (selected == "extraClicker" && extra_clicker.count >= count) {
                 let amount = 0;
-                for (let i = extra_clicker.count; i > extra_clicker.count - count; i --) {
+                for (let i = extra_clicker.count - 1; i > extra_clicker.count - count; i --) {
                     amount += Math.round(0.75 * extra_clicker.base * extra_clicker.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
@@ -136,7 +136,7 @@ function update() {
     `Potatoes/sec: ${total}<br>Potatoes/click: ${extra_clicker.count + 1}`;
 
     document.getElementById("potatoLabel").innerHTML = 
-    `Potatoes: ${potato}`;
+    `Potatoes: ${Math.round(potato)}`;
 
     document.getElementById("babyFarmerLabel").innerHTML = 
         `Baby Farmers: ${baby_farmer.count}<br>${baby_farmer.generation} potato/sec`; 
