@@ -90,6 +90,8 @@ function sell() {
         }
     }
     update();
+    check();
+    document.getElementById("sellNum").value = ""
 }
 
 function check() {
