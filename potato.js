@@ -14,19 +14,19 @@ function potatoClick() {
 function buy(item) {
     if (item == 1 && potato >= Math.round((baby_farmer.base)*(baby_farmer.mult)**(baby_farmer.count))) {
         potato -= Math.round((baby_farmer.base)*(baby_farmer.mult)**(baby_farmer.count));
-        baby_farmer ++;   
+        baby_farmer.count ++;   
     } else if (item == 2 && potato >= Math.round((farmer.base)*(farmer.mult)**(farmer.count))) {
         potato -= Math.round((farmer.base)*(farmer.mult)**(farmer.count));
-        farmer ++;
+        farmer.count ++;
     } else if (item == 3 && potato >= Math.round((tractor.base)*(tractor.mult)**(tractor.count))) {
         potato -= Math.round((tractor.base)*(tractor.mult)**(tractor.count));
-        tractor ++;
+        tractor.count ++;
     } else if (item == 4 && potato >= Math.round((potato_machine.base)*(potato_machine.mult)**(potato_machine.count))) {
         potato -= Math.round((potato_machine.base)*(potato_machine.mult)**(potato_machine.count));
-        potato_machine ++;
+        potato_machine.count ++;
     } else if (item == 5 && potato >= Math.round((extra_clicker.base)*(extra_clicker.mult)**(extra_clicker.count))) {
         potato -= Math.round((extra_clicker.base)*(extra_clicker.mult)**(extra_clicker.count));
-        extra_clicker ++;
+        extra_clicker.count ++;
     } 
     check();
     update();
