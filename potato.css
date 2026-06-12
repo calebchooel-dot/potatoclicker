@@ -26,3 +26,7 @@ body {
     padding: 10px;
     text-align: left;
 }
+
+.canBuy {
+    background-color: rgb(244, 244, 128);
+}
