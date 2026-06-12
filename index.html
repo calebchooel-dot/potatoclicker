@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potato Clicker</title>
+    <title>Potato Tycoon</title>
     <link rel = "stylesheet" type = "text/css" href = "potato.css">
 </head>
 <body>
@@ -21,29 +21,29 @@
             Potatoes/click: 1</p>
         </div>
 
-        <div class="upgrade">
-            <p id = "babyFarmerLabel">Baby Farmer: 0 <br>+0.2 potato/sec</p>
-            <button id = "babyFarmerButton"onclick = buy(1)>Buy Baby Farmer: $10</button>
+        <div class="upgrade" id = "div1">
+            <p id = "babyFarmerLabel">Baby Farmers: 0 <br>+1 potato/sec</p>
+            <button id = "babyFarmerButton"onclick = buy(1)>Buy Baby Farmer: $25</button>
         </div>
 
-        <div class="upgrade">
-            <p id = "farmerLabel">Farmers: 0 <br>+1 potato/sec</p>
-            <button id = "farmerButton" onclick = buy(2)>Buy Farmer: $80</button>
+        <div class="upgrade" id = "div2">
+            <p id = "farmerLabel">Farmers: 0 <br>+5 potato/sec</p>
+            <button id = "farmerButton" onclick = buy(2)>Buy Farmer: $100</button>
         </div>
     
-        <div class="upgrade">
-            <p id = "tractorLabel">Tractors: 0<br>+10 potato/sec</p>
-            <button id = "tractorButton" onclick = buy(3)>Buy Tractor: $900</button>
+        <div class="upgrade" id = "div3">
+            <p id = "tractorLabel">Tractors: 0<br>+20 potato/sec</p>
+            <button id = "tractorButton" onclick = buy(3)>Buy Tractor: $600</button>
         </div>
 
-        <div class="upgrade">
-            <p id = "potatoMachineLabel">Potato Machine: 0<br>+70 potato/sec</p>
-            <button id = "potatoMachineButton" onclick = buy(4)>Buy Potato Machine: $10000</button>
+        <div class="upgrade" id = "div4">
+            <p id = "potatoMachineLabel">Potato Machines: 0<br>+70 potato/sec</p>
+            <button id = "potatoMachineButton" onclick = buy(4)>Buy Potato Machine: $3000</button>
         </div>
 
-        <div class="upgrade">
-            <p id = "extraClickerLabel">Extra Clicker: 0 <br>+1 potato/click</p>
-            <button id = "extraClickerButton"onclick = buy(5)>Buy Extra Clicker: $1000</button>
+        <div class="upgrade" id = "div5">
+            <p id = "extraClickerLabel">Extra Clickers: 0 <br>+1 potato/click</p> 
+            <button id = "extraClickerButton"onclick = buy(5)>Buy Extra Clicker: $200</button>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
         <input type = "radio" name = "item" value="potatoMachine">Sell Potato Machine<br>    
         <input type = "radio" name = "item" value="extraClicker">Sell Extra Clicker<br><br>
         <p>Enter number to sell: </p>
-        <input type = "number" id = "sellNum"></input><br><br>
+        <input type = "number" id = "sellNum"><br><br>
         <button onclick = sell()>Sell</button>    
     </div>    
     </body>
