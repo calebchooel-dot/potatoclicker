@@ -1,32 +1,34 @@
 let potato = 0;
-let baby_farmer = 0;
-let extra_clicker = 0;
-let farmer = 0; 
-let tractor = 0;
-let potato_machine = 0;
+let baby_farmer = {count: 0, base: 25, mult: 1.25, generation: 1}; 
+let farmer = {count: 0, base: 100, mult: 1.27, generation: 5}; 
+let tractor = {count: 0, base: 600, mult: 1.29, generation: 20};
+let potato_machine = {count: 0, base: 3000, mult: 1.31, generation: 100};
+let extra_clicker = {count: 0, base: 200, mult: 1.4, generation: 1};
 
 function potatoClick() {
-    potato += extra_clicker + 1;
+    potato += extra_clicker.count + 1;
+    check();
     update();
 }
 
 function buy(item) {
-    if (item == 1 && potato >= Math.round(10*1.25**baby_farmer)) {
-        potato -= Math.round(10*1.25**baby_farmer);
+    if (item == 1 && potato >= Math.round((baby_farmer.base)*(baby_farmer.mult)**(baby_farmer.count))) {
+        potato -= Math.round((baby_farmer.base)*(baby_farmer.mult)**(baby_farmer.count));
         baby_farmer ++;   
-    } else if (item == 2 && potato >= Math.round(80*1.27**farmer)) {
-        potato -= Math.round(80*1.27**farmer);
+    } else if (item == 2 && potato >= Math.round((farmer.base)*(farmer.mult)**(farmer.count))) {
+        potato -= Math.round((farmer.base)*(farmer.mult)**(farmer.count));
         farmer ++;
-    } else if (item == 3 && potato >= Math.round(900*1.29**tractor)) {
-        potato -= Math.round(900*1.29**tractor);
+    } else if (item == 3 && potato >= Math.round((tractor.base)*(tractor.mult)**(tractor.count))) {
+        potato -= Math.round((tractor.base)*(tractor.mult)**(tractor.count));
         tractor ++;
-    } else if (item == 4 && potato >= Math.round(10000*1.31**potato_machine)) {
-        potato -= Math.round(10000*1.31**potato_machine);
+    } else if (item == 4 && potato >= Math.round((potato_machine.base)*(potato_machine.mult)**(potato_machine.count))) {
+        potato -= Math.round((potato_machine.base)*(potato_machine.mult)**(potato_machine.count));
         potato_machine ++;
-    } else if (item == 5 && potato >= Math.round(10*1.35**extra_clicker)) {
-        potato -= Math.round(10*1.35**extra_clicker);
+    } else if (item == 5 && potato >= Math.round((extra_clicker.base)*(extra_clicker.mult)**(extra_clicker.count))) {
+        potato -= Math.round((extra_clicker.base)*(extra_clicker.mult)**(extra_clicker.count));
         extra_clicker ++;
     } 
+    check();
     update();
 }
 
@@ -37,22 +39,22 @@ function sell() {
             let selected = options[item].value;
             let count = Number(document.getElementById("sellNum").value);
 
-            if (selected == "babyFarmer" && baby_farmer >= count) {
+            if (selected == "babyFarmer" && baby_farmer.count >= count) {
                 let amount = 0;
-                for (let i = baby_farmer; i > baby_farmer - count; i --) {
-                    amount += Math.round(0.75 * 10 * 1.25 ** i);
+                for (let i = baby_farmer.count; i > baby_farmer.count - count; i --) {
+                    amount += Math.round(0.75 * baby_farmer.base * baby_farmer.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
-                    baby_farmer -= count;
+                    baby_farmer.count -= count;
                     potato += amount;
                 }
-            } else if (selected == "farmer" && farmer >= count) {
+            } else if (selected == "farmer" && farmer.count >= count) {
                 let amount = 0;
-                for (let i = farmer; i > farmer - count; i --) {
-                    amount += Math.round(0.75 * 80 * 1.27 ** i);
+                for (let i = farmer.count; i > farmer.count - count; i --) {
+                    amount += Math.round(0.75 * farmer.base * farmer.mult ** i);
                 }
                 if (window.confirm(`Sell ${count} ${selected} for $${amount}?`)) {
-                    farmer -= count;
+                    farmer.count -= count;
                     potato += amount;
                 }
             } else if (selected == "tractor" && tractor >= count) {
@@ -88,12 +90,39 @@ function sell() {
     update();
 }
 
+function check() {
+    if (potato >= Math.round(baby_farmer.base * baby_farmer.mult * baby_farmer.count)) {
+        document.getElementById("babyFarmerButton").classList.add("canBuy")
+    } else {
+        document.getElementById("babyFarmerButton").classList.remove("canBuy")
+    } 
+    if (potato >= Math.round(farmer.base * farmer.mult * farmer.count)) {
+        document.getElementById("farmerButton").classList.add("canBuy")
+    } else {
+        document.getElementById("farmerButton").classList.remove("canBuy")
+    }
+    if (potato >= Math.round(tractor.base * tractor.mult * tractor.count)) {
+        document.getElementById("tractorButton").classList.add("canBuy")
+    } else {
+        document.getElementById("tractorButton").classList.remove("canBuy")
+    }
+    if (potato >= Math.round(potato_machine.base * potato_machine.mult * potato_machine.count)) {
+        document.getElementById("potatoMachineButton").classList.add("canBuy")
+    } else {
+        document.getElementById("potatoMachineButton").classList.remove("canBuy")
+    }
+    if (potato >= Math.round(extra_clicker.base * extra_clicker.mult * extra_clicker.count)) {
+        document.getElementById("extraClickerButton").classList.add("canBuy")
+    } else {
+        document.getElementById("extraClickerButton").classList.remove("canBuy")
+    } 
+}
 
 setInterval(function() {
-    potato += baby_farmer * 0.2
-    potato += farmer * 1;
-    potato += tractor * 10;
-    potato += potato_machine * 70;
+    potato += baby_farmer.count * baby_farmer.generation
+    potato += farmer.count * farmer.generation;
+    potato += tractor.count * tractor.generation;
+    potato += potato_machine.count * potato_machine.generation;
 
     document.getElementById("potatoLabel").innerHTML =
     `Potatoes: ${potato}`;
@@ -101,35 +130,35 @@ setInterval(function() {
 
 
 function update() {
-    let total = baby_farmer * 0.2 + farmer * 1 + tractor * 10 + potato_machine * 70;
+    let total = baby_farmer.count * baby_farmer.generation + farmer.count *  farmer.generation + tractor.count * tractor.generation + potato_machine.count * potato_machine.generation;
     document.getElementById("statsText").innerHTML = 
-    `Potatoes/sec: ${total}<br>Potato/click: ${extra_clicker + 1}`;
+    `Potatoes/sec: ${total}<br>Potatoes/click: ${extra_clicker.count + 1}`;
 
     document.getElementById("potatoLabel").innerHTML = 
     `Potatoes: ${potato}`;
 
     document.getElementById("babyFarmerLabel").innerHTML = 
-        `Baby Farmers: ${baby_farmer}<br>+0.2 potato/sec`; 
+        `Baby Farmers: ${baby_farmer.count}<br>+${baby_farmer.generation} potato/sec`; 
     document.getElementById("babyFarmerButton").innerHTML = 
-        `Buy Baby Farmer: $${Math.round(10*1.25**baby_farmer)}`;
+        `Buy Baby Farmer: $${Math.round(baby_farmer.base * baby_farmer.mult ** baby_farmer.count)}`;
 
     document.getElementById("farmerLabel").innerHTML = 
-        "Farmers: " + farmer + "<br>+1 potato/sec";
+        `Farmers:  ${farmer.count} <br>+${farmer.generation} potato/sec`;
     document.getElementById("farmerButton").innerHTML = 
-        `Buy Farmer: $${Math.round(80*1.27**farmer)}`;
+        `Buy Farmer: $${Math.round(farmer.base * farmer.mult ** farmer.count)}`;
 
     document.getElementById("tractorLabel").innerHTML = 
-        "Tractors: " + tractor + "<br>+8 potatos/sec";
+        `Tractors: ${tractor.count} + "<br>+${tractor.generation} potato/sec`;
     document.getElementById("tractorButton").innerHTML = 
-        `Buy Tractor: $${Math.round(900*1.29**tractor)}`;
+        `Buy Tractor: $${Math.round(tractor.base * tractor.mult ** tractor.count)}`;
 
     document.getElementById("potatoMachineLabel").innerHTML = 
-        "Potato Machines: " + potato_machine + "<br>+60 potatos/sec"; 
+        `Potato Machines: + ${potato_machine.count} + "<br>+${potatao_machine.generation} potato/sec`; 
     document.getElementById("potatoMachineButton").innerHTML = 
-        `Buy Potato Machine: $${Math.round(10000*1.31**potato_machine)}`;
+        `Buy Potato Machine: $${Math.round(potato_machine.base * potato_machine.mult ** potato_machine.count)}`;
 
     document.getElementById("extraClickerLabel").innerHTML = 
-        "Extra Clickers: " + extra_clicker + "<br>+1 potatos/click"; 
+        `Extra Clickers: + ${extra_clicker.count} + "<br>+${extra_clicker.generation} potato/click`; 
     document.getElementById("extraClickerButton").innerHTML = 
-        `Buy Extra Clicker: $${Math.round(1000*1.35**extra_clicker)}`;
+        `Buy Extra Clicker: $${Math.round(extra_clicker.base * extra_clicker.mult ** extra_clicker.count)}`;
 }
